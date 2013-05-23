@@ -5,4 +5,8 @@
 
 module "hexagon" {
 
+    export interface IHexagonModule extends IModule {
+
+    }
+
 }

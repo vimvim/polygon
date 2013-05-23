@@ -5,6 +5,8 @@
 
 module "monogon" {
 
+    export interface IMonogonModule extends IModule {
 
+    }
 
 }
