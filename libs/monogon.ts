@@ -5,8 +5,17 @@
 
 module "monogon" {
 
-    export interface IMonogonModule extends IModule {
+    export interface IControllerMapping {
 
+    }
+
+
+    /**
+     * Web application module
+     */
+
+    export interface IMonogonModule extends IModule {
+        getControllersMappings();
     }
 
 }
