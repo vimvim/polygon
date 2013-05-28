@@ -3,7 +3,11 @@
  * Base module
  */
 
-module "polygon" {
+export module Polygon {
+
+    export interface IComponent {
+
+    }
 
     /**
      * Describes module parameters. Module parameters can be used for injecting
@@ -26,10 +30,12 @@ module "polygon" {
         getParameterDescriptors();
 
         bindParameter();
-    }
 
-    export interface IComponent {
+        /**
+         * Build module and return root component
+         */
 
+        build():IComponent;
     }
 
     export interface IComponentProperty {
@@ -57,17 +63,19 @@ module "polygon" {
         create():IComponent;
     }
 
-    export interface IPropertyValue {
+    export interface IPropertyBinding {
 
     }
 
     export interface IComponentClass {
 
+        getType():IComponentType;
+
         /**
-         * Return list of the configured component properties.
+         * Return bind configuration for component properties.
          */
 
-        getPropertyValues():IComponentProperty;
+        getPropertyBindings():IPropertyBinding;
 
         /**
          * Get component instance. Depending on the implementation component class can create and return

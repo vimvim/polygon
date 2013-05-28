@@ -2,9 +2,9 @@
 // Application and webserver startup sequence
 // 1. Hexagon start and scan all bundles
 // 2. For each bundle hexagon call factory which will return hexagon module ( IHexagonModule )
-// 3. One of the modules is are monogon
-// 4. Monogon list all budnles and find all monogon modules
-// 5. For each monogon module he's get routing information and map controllers
+// 3. One of the modules is are octagon
+// 4. Bundles which is neeeds to expose HTTP end points - request injecting Octagon and
+//    register own routes with it
 
 
 
@@ -16,4 +16,7 @@
 // 3. Serialize Polygon module
 
 
+var serverModule = Hexagon.getServerModule();
+var server = serverModule.build();
+server.run();
 

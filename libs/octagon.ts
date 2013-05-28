@@ -3,7 +3,7 @@
  * Web application module ( controllers, ... )
  */
 
-module "monogon" {
+module Octagon {
 
     export interface IControllerMapping {
 
