@@ -10,12 +10,5 @@ module Octagon {
     }
 
 
-    /**
-     * Web application module
-     */
-
-    export interface IMonogonModule extends IModule {
-        getControllersMappings();
-    }
 
 }

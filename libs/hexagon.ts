@@ -9,22 +9,25 @@
 
 module Hexagon {
 
-    export class HexagonBundle extends Polygon.Module {
+    export class Bundle extends Polygon.Module {
 
-        /**
-         * Get list of the classes exposed to the server environment and available for injecting into
-         * another bundles.
-         */
-
-        getExposedClasses():List {
+        init() {
 
         }
 
+        /**
+         * Get list of the components exposed to the server environment and available for injecting into
+         * another bundles.
+         */
+
+        getExposedComponents():List {
+
+        }
     }
 
     export class BundlesRegistry {
 
-        public enumBundles() {
+        public enumBundles(callback:(bundle: Bundle) => void) {
 
         }
 
@@ -59,30 +62,47 @@ module Hexagon {
 
     }
 
+    /*
     export function BundlesRegistryType():Polygon.IComponentType {
 
     }
-
+    */
     export class Hexagon {
 
         private bundlesRegistry:BundlesRegistry;
+        private scope:Scope;
 
-        get bundlesRegistry():BundlesRegistry {
-            return this.bundlesRegistry;
-        }
-        set bundlesRegistry(bundlesRegistry:BundlesRegistry) {
+        public setBundlesRegistry(bundlesRegistry:BundlesRegistry) {
             this.bundlesRegistry = bundlesRegistry;
+        }
+
+        public setScope(scope: Scope) {
+            this.scope = scope;
         }
 
         public run() {
 
             this.bundlesRegistry.scanBundles();
+            this.bundlesRegistry.enumBundles((bundle: Bundle) => {
 
+                var exposedComponents = bundle.getExposedComponents();
+                this.scope.registerComponents(exposedComponents);
+            });
 
+            this.bundlesRegistry.enumBundles((bundle: Bundle) => {
 
+                this.scope.enumComponents((component:?)=>{
+                    bundle.registerExternalBinding(component);
+                });
+            });
+
+            this.bundlesRegistry.enumBundles((bundle: Bundle) => {
+                bundle.init();
+            });
         }
     }
 
+    /*
     export function HexagonType():Polygon.IComponentType {
 
     }
@@ -93,5 +113,5 @@ module Hexagon {
             return new Polygon.ComponentClass(HexagonType());
         }
 
-    }
+    } */
 }
