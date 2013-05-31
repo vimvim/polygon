@@ -3,17 +3,23 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/libs/hexagon.js" />
+        <item url="file://$PROJECT_DIR$/bundles/test/src/controllers/TestController.js" />
+        <item url="file://$PROJECT_DIR$/test/test.js" />
         <item url="file://$PROJECT_DIR$/libs/polygon.js" />
         <item url="file://$PROJECT_DIR$/bundles/octagon/src/router.js" />
+        <item url="file://$PROJECT_DIR$/bundles/test/test.js" />
         <item url="file://$PROJECT_DIR$/app.js" />
         <item url="file://$PROJECT_DIR$/bundles/octagon/octagon.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/bundles/test/src/controllers/TestController.js" />
       <root url="file://$PROJECT_DIR$/libs/hexagon.js" />
+      <root url="file://$PROJECT_DIR$/test/test.js" />
       <root url="file://$PROJECT_DIR$/libs/polygon.js" />
       <root url="file://$PROJECT_DIR$/bundles/octagon/src/router.js" />
       <root url="file://$PROJECT_DIR$/app.js" />
+      <root url="file://$PROJECT_DIR$/bundles/test/test.js" />
       <root url="file://$PROJECT_DIR$/bundles/octagon/octagon.js" />
     </CLASSES>
     <SOURCES />

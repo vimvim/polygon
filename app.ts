@@ -16,7 +16,8 @@
 // 3. Serialize Polygon module
 
 
-var serverModule = Hexagon.getServerModule();
-var server = serverModule.build();
-server.run();
+// var serverModule = Hexagon.getServerModule();
+// var server = serverModule.build();
+// server.run();
+
 
