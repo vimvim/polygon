@@ -1,88 +1,148 @@
 
+///<reference path='underscore.d.ts' />
+
+import _ = module("underscore");
+
 /**
- * Base module
+ * Dependency injection framework
  */
 
-export module Polygon {
 
-    export interface IComponent {
+
+    export class InvalidConfigurationException {
+        constructor(public reason:string) {
+        }
+    }
+
+    export class Scope {
 
     }
 
-    /**
-     * Describes module parameters. Module parameters can be used for injecting
-     * external dependencies into module ( ex: external service ) or inject
-     * configuration parameters.
-     *
-     * Parameters can have simple types or be objects implemented IComponent interface.
-     */
+    export class Binding {
 
-    export interface IParamDescriptor {
+        private _inClass:Function;
+        private _to:any;
+        private _scope:Scope;
 
+        public to(value:any):Binding {
+            return this;
+        }
+
+        public inClass(func:any):Binding {
+            return this;
+        }
+
+        public inScope(scope:Scope):Binding {
+            return this;
+        }
     }
 
-    export interface IModule {
-
-        /**
-         * Get descriptors of the module parameters.
-         */
-
-        getParameterDescriptors();
-
-        bindParameter();
-
-        /**
-         * Build module and return root component
-         */
-
-        build():IComponent;
+    export class DependencyBinding extends Binding {
+        constructor(private dependencyName:string) {
+            super();
+        }
     }
 
-    export interface IComponentProperty {
-
+    export class PropertyBinding extends Binding {
+        constructor(private propertyName:string) {
+            super();
+        }
     }
 
-    export interface IComponentType {
+    export class Injector {
+
+        private bindings:Array;
 
         /**
-         * Return component type name.
+         * Configure injector
+         *
          */
 
-        getName():string;
+        public configure():void {
+            throw new InvalidConfigurationException("Injector configuration is not implemented");
+        }
 
         /**
-         * Return list of the configurable properties.
+         * Create object of the specified class
+         *
+         * @param objectClass
+         * @returns object
          */
 
-        getProperties();
+        public get(objectClass:Function):any {
+
+            var args = [];
+
+            var argNames = this.getArgumentNames(objectClass);
+            argNames.forEach(function (dependencyName:String) {
+                args.push(this.resolveDependency(dependencyName, objectClass));
+            });
+
+            function F() {
+                return objectClass.apply(this, args);
+            }
+
+            F.prototype = objectClass.prototype;
+            return new F();
+        }
+
+        public importModule(module:any) {
+
+
+            _.each(module, function(value, name){
+                console.log("123");
+            });
+
+
+        }
+
+        public resolveDependency(dependencyName:string, objectClass:Function) {
+
+            // 1. Check if we have binding. If not then dependency name must be the same as class name
+
+            // 2. Check if binding defined in the scope. In this case check if dependency already instantiated.
+
+        }
 
         /**
-         * Create component instance.
+         * Create dependency injection rule.
+         * Dependencies injected into object constructor during object instantiation.
+         *
+         * @param dependency        Name of the dependency
          */
 
-        create():IComponent;
+        public bind(dependency:string):Binding {
+
+            var binding = new DependencyBinding(dependency);
+
+            return binding;
+        }
+
+        /**
+         * Create property injection rule.
+         *
+         * @param propertyName
+         */
+
+        public let(propertyName:string):Binding {
+            return new PropertyBinding(propertyName);
+        }
+
+        /**
+         * Function will return array of the argument names for specified function.
+         *
+         * @param func
+         * @returns {Array}
+         */
+
+        private getArgumentNames(func:Function):string[] {
+
+            var tmp = func.toString().match(/\(.*?\)/g)[0];
+            //["a", "b", "c", "d", "e", "f"]
+            var argumentNames = tmp.replace(/[()\s]/g, '').split(',');
+
+            return argumentNames;
+        }
     }
 
-    export interface IPropertyBinding {
 
-    }
-
-    export interface IComponentClass {
-
-        getType():IComponentType;
-
-        /**
-         * Return bind configuration for component properties.
-         */
-
-        getPropertyBindings():IPropertyBinding;
-
-        /**
-         * Get component instance. Depending on the implementation component class can create and return
-         * new instances of the component on the each call or singleton instance.
-         */
-
-        get():IComponent;
-    }
-
-}
