@@ -1,5 +1,12 @@
 
-///<reference path='underscore.d.ts' />
+
+///<reference path='../definitions/node.d.ts' />
+///<reference path='../definitions/underscore.d.ts' />
+
+
+import vm = module("vm");
+import fs = module("fs");
+import path = module("path");
 
 import _ = module("underscore");
 
@@ -126,6 +133,21 @@ import _ = module("underscore");
 
         public let(propertyName:string):Binding {
             return new PropertyBinding(propertyName);
+        }
+
+        public loadModule(moduleName:string, filesList:Array):any {
+
+            filesList.forEach(function(filename){
+                var data = fs.readFileSync(path.resolve(__dirname, filename));
+                vm.runInThisContext(data);
+            });
+
+            var retVal = eval(moduleName);
+            if (retVal===undefined) {
+                throw new InvalidConfigurationException("Module is not defined:"+moduleName);
+            }
+
+            return retVal;
         }
 
         /**

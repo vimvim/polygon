@@ -15,20 +15,10 @@
 import Polygon = module("../../../libs/polygon");
 import TestModule2 = module("exp_module");
 
-import vm = module("vm");
-import fs = module("fs");
+//export module DiModule {
 
-export module DiModule {
 
-    // import module1 = TestModule
-    // import module2 = TestModule3
-
-    // declare var require: any;
-    // require("../../libs/polygon");
-    // var t1 = require("./test_module1");
-    // var t2 = require("./test_module2");
-
-    export class Injector extends Polygon.Injector {
+    export class StarFleeInjector extends Polygon.Injector {
 
         /**
          * Configure injector
@@ -37,9 +27,7 @@ export module DiModule {
 
         public configure():void {
 
-            var data = fs.readFileSync("module1_1.js");
-            vm.runInThisContext(data);
-
+            var Module1:Module1 = this.loadModule('Module1', ['module1_1.js', 'module1_2.js']);
 
             this.importModule(TestModule2);
 
@@ -65,19 +53,14 @@ export module DiModule {
             // Will be applied to the  TestClass.setChannelName only
             this.let("channelName").inClass(Module1.TestClass).to("SuperChannel");
         }
+
     }
 
-    export function getInjector():Injector {
+    export function getInjector():Polygon.Injector {
 
-        var injector = new Injector();
+        var injector = new StarFleeInjector();
         injector.configure();
 
         return injector;
     }
-
-    // var injector = new Injector();
-    // injector.configure();
-
-    // var testClass = injector.get(Module1.TestClass);
-    // testClass.what();
-}
+//}

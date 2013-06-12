@@ -2,22 +2,27 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/tests/polygon/case1/starbase/hyperdrive.js" />
         <item url="file://$PROJECT_DIR$/libs/hexagon.js" />
+        <item url="file://$PROJECT_DIR$/tests/polygon/case1/common/injector.js" />
         <item url="file://$PROJECT_DIR$/experiments/modules/animals.js" />
+        <item url="file://$PROJECT_DIR$/tests/polygon/case1/starbase/starbase.js" />
         <item url="file://$PROJECT_DIR$/experiments/modules/dog.js" />
         <item url="file://$PROJECT_DIR$/libs/polygon.js" />
-        <item url="file://$PROJECT_DIR$/tests/polygon/case1/di_module.js" />
-        <item url="file://$PROJECT_DIR$/tests/polygon/case1/main.js" />
+        <item url="file://$PROJECT_DIR$/tests/polygon/case1/common/comm_engine.js" />
         <item url="file://$PROJECT_DIR$/tests/polygon/case1/case1.js" />
-        <item url="file://$PROJECT_DIR$/app.js" />
         <item url="file://$PROJECT_DIR$/tests/polygon/case1/module1_1.js" />
+        <item url="file://$PROJECT_DIR$/app.js" />
+        <item url="file://$PROJECT_DIR$/tests/polygon/case1/common/power_supply.js" />
         <item url="file://$PROJECT_DIR$/tests/polygon/case1/module2.js" />
-        <item url="file://$PROJECT_DIR$/tests/polygon/case1/exp_module.js" />
         <item url="file://$PROJECT_DIR$/bundles/test/src/controllers/TestController.js" />
+        <item url="file://$PROJECT_DIR$/tests/polygon/case1/exp_module.js" />
+        <item url="file://$PROJECT_DIR$/tests/polygon/case1/injector.js" />
         <item url="file://$PROJECT_DIR$/experiments/modules/exp_module.js" />
         <item url="file://$PROJECT_DIR$/tests/polygon/case1/module1_2.js" />
-        <item url="file://$PROJECT_DIR$/bundles/octagon/src/router.js" />
         <item url="file://$PROJECT_DIR$/experiments/modules/test.js" />
+        <item url="file://$PROJECT_DIR$/bundles/octagon/src/router.js" />
+        <item url="file://$PROJECT_DIR$/tests/polygon/case1/starbase/injector.js" />
         <item url="file://$PROJECT_DIR$/bundles/test/test.js" />
         <item url="file://$PROJECT_DIR$/bundles/octagon/octagon.js" />
       </sourceFilesUrls>
@@ -48,22 +53,32 @@
       <root url="file://$PROJECT_DIR$/tests/polygon/case1/main_2.js" />
       <root url="file://$PROJECT_DIR$/tests/polygon/case1/main_2.js" />
       <root url="file://$PROJECT_DIR$/tests/polygon/case1/main.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/di_module.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/main.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/di_module.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/starbase/main.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/starbase/main.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/starbase/hyperdrive.js" />
       <root url="file://$PROJECT_DIR$/libs/hexagon.js" />
       <root url="file://$PROJECT_DIR$/experiments/modules/animals.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/common/injector.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/starbase/starbase.js" />
       <root url="file://$PROJECT_DIR$/experiments/modules/dog.js" />
       <root url="file://$PROJECT_DIR$/libs/polygon.js" />
-      <root url="file://$PROJECT_DIR$/tests/polygon/case1/di_module.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/common/comm_engine.js" />
       <root url="file://$PROJECT_DIR$/tests/polygon/case1/case1.js" />
-      <root url="file://$PROJECT_DIR$/tests/polygon/case1/main.js" />
-      <root url="file://$PROJECT_DIR$/tests/polygon/case1/module1_1.js" />
       <root url="file://$PROJECT_DIR$/app.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/module1_1.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/common/power_supply.js" />
       <root url="file://$PROJECT_DIR$/tests/polygon/case1/module2.js" />
-      <root url="file://$PROJECT_DIR$/bundles/test/src/controllers/TestController.js" />
       <root url="file://$PROJECT_DIR$/tests/polygon/case1/exp_module.js" />
+      <root url="file://$PROJECT_DIR$/bundles/test/src/controllers/TestController.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/injector.js" />
       <root url="file://$PROJECT_DIR$/tests/polygon/case1/module1_2.js" />
       <root url="file://$PROJECT_DIR$/experiments/modules/exp_module.js" />
-      <root url="file://$PROJECT_DIR$/experiments/modules/test.js" />
       <root url="file://$PROJECT_DIR$/bundles/octagon/src/router.js" />
+      <root url="file://$PROJECT_DIR$/experiments/modules/test.js" />
+      <root url="file://$PROJECT_DIR$/tests/polygon/case1/starbase/injector.js" />
       <root url="file://$PROJECT_DIR$/bundles/test/test.js" />
       <root url="file://$PROJECT_DIR$/bundles/octagon/octagon.js" />
     </CLASSES>
