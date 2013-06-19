@@ -1,7 +1,9 @@
 
 import Polygon = module("../../../../libs/polygon");
 
-//export module StarbaseInjector {
+export module StarbaseModule {
+
+    var Starbase:any;
 
     export class StarbaseInjector extends Polygon.Injector {
 
@@ -49,4 +51,4 @@ import Polygon = module("../../../../libs/polygon");
         return injector;
     }
 
-//}
+}

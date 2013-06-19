@@ -1,7 +1,7 @@
 
-module Starbase {
+// module Starbase {
 
     export interface IStarbase {
 
     }
-}
+// }

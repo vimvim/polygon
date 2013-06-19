@@ -5,9 +5,9 @@
 ///<reference path='interfaces.ts' />
 ///<reference path='hyperdrive.ts' />
 
-// import Polygon = module("../../../../libs/polygon");
+import Polygon = module("../../../../libs/polygon");
 
-module Starbase {
+// module Starbase {
 
     export class Starbase implements IStarbase {
 
@@ -22,5 +22,5 @@ module Starbase {
 
         ) {};
     }
-}
+// }
 
