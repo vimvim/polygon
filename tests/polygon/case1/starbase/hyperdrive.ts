@@ -1,12 +1,12 @@
 
+///<reference path='../common/interfaces.ts' />
+
 module Starbase {
 
     export class Hyperdrive {
 
-        constructor(){
-            powerSupply: IPowerSupply
-        }
-
+        constructor(
+            private powerSupply: Common.IPowerSupply
+        ) {}
     }
-
 }

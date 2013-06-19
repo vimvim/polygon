@@ -15,6 +15,14 @@ import _ = module("underscore");
  */
 
 
+    /**
+    * Will allow to inject injector as are dependency.
+    */
+
+    export interface InstanceInjector {
+        get():any;
+    }
+
 
     export class InvalidConfigurationException {
         constructor(public reason:string) {
