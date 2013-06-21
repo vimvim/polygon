@@ -1,9 +1,15 @@
 
+///<reference path="hyperdrive.ts"/>
+///<reference path="starbase.ts"/>
+
 import Polygon = module("../../../../libs/polygon");
 
-export module StarbaseModule {
+var Starbase: new() => Starbase.Starbase;
 
-    var Starbase:any;
+export var IStarbase: new() => Starbase.IStarbase;
+
+Polygon.loadModule(exports, "Starbase", ["hyperdrive.js", "starbase.js"], __dirname);
+
 
     export class StarbaseInjector extends Polygon.Injector {
 
@@ -13,6 +19,8 @@ export module StarbaseModule {
          */
 
         public configure():void {
+
+            this.bindType(IStarbase).to(Starbase);
 
             // var Module1:Module1 = this.loadModule('Module1', ['module1_1.js', 'module1_2.js']);
 
@@ -51,4 +59,4 @@ export module StarbaseModule {
         return injector;
     }
 
-}
+

@@ -1,7 +1,7 @@
 
 ///<reference path='../common/interfaces.ts' />
 
-// module Starbase {
+module Starbase {
 
     export class Hyperdrive {
 
@@ -9,4 +9,4 @@
             private powerSupply: Common.IPowerSupply
         ) {}
     }
-// }
+}

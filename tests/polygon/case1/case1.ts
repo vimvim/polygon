@@ -1,19 +1,21 @@
 
 ///<reference path='../../../libs/tsunit.ts' />
+///<reference path='../../../libs/polygon.d.ts' />
 
 ///<reference path='./common/interfaces.ts' />
 ///<reference path='./starbase/interfaces.ts' />
 ///<reference path='./starbase/starbase.ts' />
-///<reference path='./starbase/injector.ts' />
+///<reference path='./starbase/module.ts' />
 
 import TSUnit = module("../../../libs/tsunit");
+import Polygon = module("../../../libs/polygon");
 
-import common = module("./common/injector");
-import starbaseInjector = module("./starbase/injector");
+// import common = module("./common/injector");
+import StarbaseModule = require("./starbase/module");
 
 export class Case1 extends TSUnit.TSTestCase {
 
-    private starbase: Starbase.Starbase;
+    private starbase: Starbase.IStarbase;
 
     public setup():void {
 
@@ -21,8 +23,15 @@ export class Case1 extends TSUnit.TSTestCase {
 
     public test1():void {
 
-        var injector = starbaseInjector.getInjector();
-        this.starbase = injector.get(Starbase.Starbase);
+        var globalScope = new Polygon.Scope();
+
+        var injector = StarbaseModule.getInjector();
+        injector.setScopeResolver("global", function(scopeName: string):PolygonInterfaces.IScope {
+            return globalScope;
+        });
+
+        // this.starbase = injector.get(Starbase.Starbase);
+        this.starbase = injector.get(StarbaseModule.IStarbase);
 
         // We needs to check that all dependencies injected
 
@@ -39,10 +48,3 @@ var testCase = new Case1();
 testCase.run();
 
 
-/*
-import diModule = module("injector");
-
-var injector = diModule.DiModule.getInjector();
-var testClass = injector.get(Module1.TestClass);
-testClass.what();
-*/

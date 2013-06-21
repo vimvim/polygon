@@ -1,0 +1,2 @@
+
+import animals = require('animals')

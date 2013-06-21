@@ -4,50 +4,52 @@
    Typescipt-Underscore may be freely distributed under the MIT license.
  */
 
-declare interface UnderscoreVoidListIterator {
+interface UnderscoreVoidListIterator {
     (element : any, index : number, list : any[]) : void;
 }
 
-declare interface UnderscoreMemoListIterator {
+interface UnderscoreMemoListIterator {
     (memo : any, element : any, index : number, list : any[]) : any;
 }
 
-declare interface UnderscoreListIterator {
+interface UnderscoreListIterator {
     (element : any, index : number, list : any[]) : any;
 }
 
-declare interface UnderscoreVoidObjectIterator {
+interface UnderscoreVoidObjectIterator {
     (element : any, key : any, object : any) : void;
 }
 
-declare interface UnderscoreMemoObjectIterator {
+interface UnderscoreMemoObjectIterator {
     (memo : any, element : any, key : any, object : any) : any;
 }
 
-declare interface UnderscoreObjectIterator{
+interface UnderscoreObjectIterator{
     (element : any, key : any, object : any) : any;
 }
 
-declare interface UnderscorePredicate {
+interface UnderscorePredicate {
     (value : any) : bool;
 }
 
-declare interface UnderscoreIterator {
+interface UnderscoreIterator {
     (value : any) : any;
 }
 
-declare interface UnderscoreTemplateSettings {
+/*
+interface UnderscoreTemplateSettings {
     evaluate?    : RegExp;
     interpolate? : RegExp;
     escape?      : RegExp;
 }
+*/
 
 /* Interface for use underscore in functional (chain) style.
    range, bindAll, dealy, defer, after, noConflict, times, random, mixin,
    uniqueId, chain and template have been removed because they are not very
    useful here.
  */
-declare interface UnderscoreWrappedObject {
+interface UnderscoreWrappedObject {
     // Collection Functions (Arrays or Objects)
     each (iterator : UnderscoreVoidListIterator, context? : any) : UnderscoreWrappedObject;
     each (iterator : UnderscoreVoidObjectIterator, context? : any) : UnderscoreWrappedObject;
@@ -250,7 +252,7 @@ declare interface UnderscoreWrappedObject {
    range, bindAll, dealy, defer, after, noConflict, times, random, mixin and
    uniqueId have been removed because they are not very useful here.
  */
-declare interface UnderscoreOOStatic {
+interface UnderscoreOOStatic {
     // Collection Functions (Arrays or Objects)
     each (iterator : UnderscoreVoidListIterator, context? : any) : void;
     each (iterator : UnderscoreVoidObjectIterator, context? : any) : void;
@@ -444,7 +446,7 @@ declare interface UnderscoreOOStatic {
 
     result (property : string) : any;
 
-    template (data? : any, settings? : UnderscoreTemplateSettings) : (...as : any[]) => string;
+    // template (data? : any, settings? : UnderscoreTemplateSettings) : (...as : any[]) => string;
 
     chain () : UnderscoreWrappedObject;
 }
@@ -666,8 +668,8 @@ declare module "underscore" {
 
     export function result (object : any, property : string) : any;
 
-    export function template (templateString : string, data? : any, settings? : UnderscoreTemplateSettings) : (...as : any[]) => string;
-    export var templateSettings : UnderscoreTemplateSettings;
+    // export function template (templateString : string, data? : any, settings? : UnderscoreTemplateSettings) : (...as : any[]) => string;
+    // export var templateSettings : UnderscoreTemplateSettings;
 
     export function chain (object : any) : UnderscoreWrappedObject;
 }

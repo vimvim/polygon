@@ -1,7 +1,6 @@
+///<reference path='../definitions/underscore_typed.d.ts' />
 
-///<reference path='../definitions/underscore.d.ts' />
-
-import _ = module("underscore");
+import _ = require("underscore");
 
 export class TSTestCase {
 

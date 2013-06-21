@@ -3,6 +3,7 @@
 ///<reference path='../definitions/node.d.ts' />
 ///<reference path='../definitions/underscore.d.ts' />
 
+///<reference path='./polygon.d.ts' />
 
 import vm = module("vm");
 import fs = module("fs");
@@ -19,12 +20,19 @@ import _ = module("underscore");
     * Will allow to inject injector as are dependency.
     */
 
-    export interface InstanceInjector {
-        get():any;
+    /// export interface IInstanceInjector {
+    ///     get():any;
+    // }
+
+    export class InstanceInjector implements PolygonInterfaces.IInstanceInjector {
+
+        get():any {
+
+        }
     }
 
-
     export class InvalidConfigurationException {
+
         constructor(public reason:string) {
         }
     }
@@ -52,11 +60,30 @@ import _ = module("underscore");
         }
     }
 
+    /**
+    * Used for binding interfaces to the concrete classes.
+    */
+
+    export class TypeBinding extends Binding {
+        constructor(private objectClass:Function) {
+            super();
+        }
+    }
+
+    /**
+    * Used for binding dependencies ( referenced by name ) to the
+    * specific classes.
+    */
+
     export class DependencyBinding extends Binding {
         constructor(private dependencyName:string) {
             super();
         }
     }
+
+    /**
+    * Used for binding object property to the concrete value.
+    */
 
     export class PropertyBinding extends Binding {
         constructor(private propertyName:string) {
@@ -66,7 +93,10 @@ import _ = module("underscore");
 
     export class Injector {
 
-        private bindings:Array;
+        private typeBindings:Array;
+
+        private typeBindingsMap: { [id: string] : TypeBinding; } = {};
+
 
         /**
          * Configure injector
@@ -74,6 +104,13 @@ import _ = module("underscore");
          */
 
         public configure():void {
+
+            this.configureBinding();
+
+            this.buildMap();
+        }
+
+        public configureBinding():void {
             throw new InvalidConfigurationException("Injector configuration is not implemented");
         }
 
@@ -93,22 +130,31 @@ import _ = module("underscore");
                 args.push(this.resolveDependency(dependencyName, objectClass));
             });
 
-            function F() {
-                return objectClass.apply(this, args);
+            function F():void {
+                objectClass.apply(this, args);
             }
 
             F.prototype = objectClass.prototype;
             return new F();
         }
 
-        public importModule(module:any) {
+        public setScopeResolver(scopeName: string, resolver:PolygonInterfaces.IScopeResolver) {
 
+        }
+
+        private getDependency(dependencyName:string):any {
+
+        }
+
+        private getProperty(dependencyName:string):any {
+
+        }
+
+        public importModule(module:any) {
 
             _.each(module, function(value, name){
                 console.log("123");
             });
-
-
         }
 
         public resolveDependency(dependencyName:string, objectClass:Function) {
@@ -120,13 +166,27 @@ import _ = module("underscore");
         }
 
         /**
+         * Create type binding
+         *
+         * @param objectClass        Constructor
+         */
+
+        public bindType(objectClass:Function):Binding {
+
+            var binding = new TypeBinding(objectClass);
+
+            return binding;
+        }
+
+
+        /**
          * Create dependency injection rule.
          * Dependencies injected into object constructor during object instantiation.
          *
          * @param dependency        Name of the dependency
          */
 
-        public bind(dependency:string):Binding {
+        public bindDependency(dependency:string):Binding {
 
             var binding = new DependencyBinding(dependency);
 
@@ -146,8 +206,8 @@ import _ = module("underscore");
         public loadModule(moduleName:string, filesList:Array):any {
 
             filesList.forEach(function(filename){
-                var data = fs.readFileSync(path.resolve(__dirname, filename));
-                vm.runInThisContext(data);
+                var data = fs.readFileSync(path.resolve(__dirname, filename), 'utf8');
+                vm.runInThisContext(data, null);
             });
 
             var retVal = eval(moduleName);
@@ -174,5 +234,64 @@ import _ = module("underscore");
             return argumentNames;
         }
     }
+
+export function loadModule(exports, moduleName:string, filesList:Array, basedir:string):any {
+
+    eval("var "+moduleName+"=null;");
+
+    // var Starbase = null;
+
+    for(var idx=0;idx<filesList.length;idx++) {
+
+        console.log("Loading: "+filesList[idx]);
+
+        var data = fs.readFileSync(path.resolve(basedir, filesList[idx]), 'utf8');
+        eval(data);
+    }
+
+    // var data = fs.readFileSync(path.resolve(basedir, filesList[0]), 'utf8');
+    // eval(data);
+
+    // var data = fs.readFileSync(path.resolve(basedir, filesList[1]), 'utf8');
+    // eval(data);
+
+    // filesList.forEach(function (filename) {
+
+        // console.log("Loading: "+filename);
+
+        // var data = fs.readFileSync(path.resolve(basedir, filename), 'utf8');
+        // eval(data);
+
+        // console.log(Starbase);
+        // vm.runInThisContext(data);
+
+        // console.log("Loaded:");
+        // vm.runInThisContext("console.log("+moduleName+");");
+    // });
+
+    // console.log("Loaded module content:");
+    // vm.runInThisContext("console.log("+moduleName+");");
+
+    // console.log(Starbase);
+    // console.log(this.Starbase);
+
+
+    // var retVal = eval("this."+moduleName);
+    var retVal = eval(moduleName);
+    // console.log(retVal);
+
+    if (retVal === undefined) {
+        throw "Module is not defined:" + moduleName;
+    }
+
+    _.each(retVal, function(value, name){
+
+        console.log("Export:"+name);
+
+        exports[name] = value;
+    });
+
+    return retVal;
+}
 
 
